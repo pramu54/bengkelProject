@@ -1,5 +1,6 @@
 package com.bengkel.booking.models;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import com.bengkel.booking.interfaces.IBengkelPayment;
@@ -18,6 +19,17 @@ public class BookingOrder implements IBengkelPayment{
 	private String paymentMethod;
 	private double totalServicePrice;
 	private double totalPayment;
+	private LocalDate bookingDate;
+	
+	public BookingOrder(String bookingId, Customer customer, List<ItemService> services, String paymentMethod, double totalServicePrice, LocalDate bookingDate) {
+		super();
+		this.bookingId = bookingId;
+		this.customer = customer;
+		this.services = services;
+		this.paymentMethod = paymentMethod;
+		this.totalServicePrice = totalServicePrice;
+		this.bookingDate = bookingDate;
+	}
 	
 	@Override
 	public void calculatePayment() {
@@ -31,5 +43,4 @@ public class BookingOrder implements IBengkelPayment{
 		setTotalPayment(getTotalServicePrice() - discount);
 	}
 
-	
 }
